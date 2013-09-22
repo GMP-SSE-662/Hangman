@@ -59,7 +59,7 @@ public class Launcher {
 						// TODO limit input to a char
 
 						if (a1.isLetterInWord(answer, guess)) {
-							//TODO update P1.guess
+							//TODO update P1.guess priority
 							char[] arrAns = answer.toCharArray();
 							for(int x = 0; x < answer.length(); x++) {
 								if(arrAns[x] == guess.toCharArray()[0]) {
