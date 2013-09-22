@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Dictionary {
-	private Map<Integer, String> Dictionary;
+	private ArrayList<String> Dictionary = new ArrayList<String>();
 	
 	public Dictionary() {
-		Dictionary.put(1, "hello");
-		Dictionary.put(2, "world");
-		Dictionary.put(3, "test");
-		Dictionary.put(4, "programming");
-		Dictionary.put(5, "software");
-		Dictionary.put(6, "development");
-		Dictionary.put(7, "java");
-		Dictionary.put(8, "hangman");
-		Dictionary.put(9, "guess");
-		Dictionary.put(10, "dictionary");
+		this.Dictionary.add("hello");
+		this.Dictionary.add("world");
+		this.Dictionary.add("test");
+		this.Dictionary.add("programming");
+		this.Dictionary.add("software");
+		this.Dictionary.add("development");
+		this.Dictionary.add("java");
+		this.Dictionary.add("hangman");
+		this.Dictionary.add("guess");
+		this.Dictionary.add("dictionary");
 	}
 
-	public Map<Integer, String> getDictionary() {
+	public ArrayList<String> getDictionary() {
 		return Dictionary;
 	}
-	public void setDictionary(Map<Integer, String> dictionary) {
+	public void setDictionary(ArrayList<String> dictionary) {
 		Dictionary = dictionary;
 	}
 	
