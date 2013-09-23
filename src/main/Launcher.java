@@ -22,9 +22,11 @@ public class Launcher {
 
 		// TODO Try Catch
 		int choice = 0;
-		while (choice != 2) { // Quit
+		while (choice != 4) { // Quit
 			System.out.println("1. Play Hangman");
-			System.out.println("2. Quit");
+			System.out.println("2. Help");
+			System.out.println("3. About this game");
+			System.out.println("4. Quit");
 
 			choice = Integer.parseInt(consoleReader.readLine());
 			if (choice == 1) {
@@ -52,21 +54,24 @@ public class Launcher {
 							+ P1.getTries());
 					controls = Integer.parseInt(consoleReader.readLine());
 
-					// TODO Player guesses
 					if (controls == 1) {
 						System.out.print("Input letter: ");
 						String guess = consoleReader.readLine();
-						// TODO limit input to a char
-
+						
 						if (a1.isLetterInWord(answer, guess)) {
-							//TODO update P1.guess priority
-							char[] arrAns = answer.toCharArray();
+							//updates P1 guess
+							//redundant code
+							//place in AIService class
 							for(int x = 0; x < answer.length(); x++) {
-								if(arrAns[x] == guess.toCharArray()[0]) {
-									System.out.print(arrAns[x] + " ");
-								} else {
-									System.out.print("_ ");
+								if (answer.toCharArray()[x] == guess.charAt(0)) {
+									P1.getGuess()[x] = guess.charAt(0);
 								}
+							}
+							//checks if final input letter is same as guess
+							if(String.valueOf(P1.getGuess()).equals(answer)) {
+								System.out.print("You have beaten the game!");
+								System.out.println();
+								
 							}
 							System.out.println();
 						} else {
@@ -75,16 +80,17 @@ public class Launcher {
 					}
 					
 					if(controls == 3) {
-						break;
+						P1.setTries(0);
 					}
 
 					// TODO if 3 Verify: ARE YOU SURE if yes show answer and
 					// give controls a value of 4
 				}
 
-				if (P1.getTries() == 0) {
+				if (P1.getTries() == 0 && !String.valueOf(P1.getGuess()).equals(answer)) {
 					System.out.println("GAME OVER, " + P1.getUsername());
 					System.out.println("The answer is " + "\"" + answer + "\"");
+					System.out.println();
 				}
 
 				// TODO if controls = 4
