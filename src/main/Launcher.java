@@ -40,11 +40,7 @@ public class Launcher {
 					while (P1.getTries() != 0) {
 						try {
 							for (int x = 0; x < answer.length(); x++) {
-								if (P1.getGuess()[x] == '\0') {
-									System.out.print("_ ");
-								} else {
-									System.out.print(P1.getGuess()[x] + " ");
-								}
+								System.out.print(P1.getGuess()[x] + " ");
 							}
 							System.out.println();
 							System.out.println("1. Guess a letter");
@@ -75,7 +71,7 @@ public class Launcher {
 							}
 
 							if (controls == 2) {
-								System.out.println("Input guess: ");
+								System.out.print("Input guess: ");
 								String guess = consoleReader.readLine();
 								if (a1.isGuessCorrect(answer, guess)) {
 									P1.setGuess(guess.toCharArray());

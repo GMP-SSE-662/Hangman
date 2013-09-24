@@ -4,7 +4,6 @@ public class Player extends PlayerService{
 	private String username;
 	private char[] guess;
 	private int tries;
-	//boolean attributes to check if guess is true?
 
 	public Player(String username) {
 		this.username = username;
