@@ -21,15 +21,15 @@ public class AIService {
 	public Boolean isLetterInWord(Player player, String answer, String letter) {
 		char ltr = letter.charAt(0);
 		char[] arrAns = answer.toCharArray();
-		boolean isWord = false;
+		boolean isInWord = false;
 
 		for (int x = 0; x < arrAns.length; x++) {
 			if (ltr == arrAns[x]) {
 				player.getGuess()[x] = ltr;
-				isWord = true;
+				isInWord = true;
 			}
 		}
-		return isWord;
+		return isInWord;
 	}
 
 	public Boolean isGuessCorrect(String answer, String guess) {

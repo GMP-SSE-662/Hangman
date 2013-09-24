@@ -1,8 +1,6 @@
 package dictionary;
 
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class Dictionary {
 	private ArrayList<String> Dictionary = new ArrayList<String>();
@@ -23,9 +21,4 @@ public class Dictionary {
 	public ArrayList<String> getDictionary() {
 		return Dictionary;
 	}
-	public void setDictionary(ArrayList<String> dictionary) {
-		Dictionary = dictionary;
-	}
-	
-	
 }

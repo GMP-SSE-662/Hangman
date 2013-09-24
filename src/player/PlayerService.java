@@ -1,6 +1,6 @@
 package player;
 
-import ai.*;
+import ai.AI;
 
 public class PlayerService {
 	public char[] initGuess(AI ai) {
