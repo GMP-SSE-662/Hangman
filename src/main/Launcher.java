@@ -135,6 +135,7 @@ public class Launcher {
 					while (!yn.toLowerCase().equals("n")) {
 						if ((yn.toLowerCase().equals("y"))) {
 							choice = 4;
+							System.out.println("***Goodbye, " + plyrName + "***");
 							break;
 						}
 						System.out.print("Y/N: ");
