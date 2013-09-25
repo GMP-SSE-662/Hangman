@@ -8,10 +8,12 @@ import player.Player;
 
 public class Machine {
 	private String answer;
+	private String lettersGuessed;
 
 	public Machine(Player player) {
 		this.answer = generateRandomWord();
 		setPlayerTries(player, answer);
+		player.initGuess(this);
 	}
 
 	public String getAnswer() {
@@ -48,5 +50,13 @@ public class Machine {
 
 	public Boolean isGuessCorrect(String answer, String guess) {
 		return guess.equals(answer);
+	}
+	
+	public String displayLettersGuessed(Player player) {
+		this.lettersGuessed = "";
+		for (int x = 0; x < answer.length(); x++) {
+			this.lettersGuessed += player.getGuess()[x] + " ";
+		}
+		return this.lettersGuessed.trim();
 	}
 }

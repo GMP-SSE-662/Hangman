@@ -17,9 +17,8 @@ public class Launcher {
 		System.out.print("Enter name:");
 		String username = consoleReader.readLine();
 
-		Player p1 = new Player(username);
-		String playerName = p1.getUsername();
-		System.out.println("Welcome " + playerName + "!");
+		Player player = new Player(username);
+		System.out.println("Welcome " + player.getUsername() + "!");
 		
 		while(true) {
 			System.out.println("\n1. Start game");
@@ -28,12 +27,12 @@ public class Launcher {
 			System.out.println("4. Quit");
 			
 			switch (playerInputInteger(0)) {
-			case 1: game(p1); break;
+			case 1: game(player); break;
 			case 2: help(); break;
 			case 3: about(); break;
 			case 4: 
 				if (playerWantsToQuit()) {
-					System.out.println("***Goodbye, " + playerName + "***");
+					System.out.println("***Goodbye, " + player.getUsername() + "***");
 					return;
 				} break;
 			default: System.out.println("***ERROR: Invalid input!***");
@@ -52,12 +51,11 @@ public class Launcher {
 	public static void game(Player player) throws IOException {
 		Machine machine = new Machine(player);
 		String answer = machine.getAnswer();
-		player.initGuess(machine);
 		
 		System.out.println("\n***Guess this " + answer.length() + " letter word!***");
 		
 		while (player.getTries() != 0) {
-			System.out.println(player.getLettersGuessed());
+			System.out.println(machine.displayLettersGuessed(player));
 			
 			System.out.println("\n1. Guess a letter");
 			System.out.println("2. Guess the answer");
@@ -75,7 +73,7 @@ public class Launcher {
 			}
 		}
 
-		if (player.getTries() == 0 && !String.valueOf(player.getGuess()).equals(answer)) {
+		if (player.getTries() == 0 && !player.getGuessAsString().equals(answer)) {
 			System.out.println("***GAME OVER, " + player.getUsername() + "!***");
 			System.out.println("***The answer is " + "\"" + answer + "\"***");
 		}
@@ -83,12 +81,12 @@ public class Launcher {
 	
 	public static void guessLetter(Player player, Machine machine) throws IOException {
 		System.out.print("Input letter: ");
-		String ltr = consoleReader.readLine();
+		String letter = consoleReader.readLine();
 		String answer = machine.getAnswer();
 
-		if (machine.isLetterInWord(player, answer, ltr.toLowerCase())) {
-			if (String.valueOf(player.getGuess()).equals(answer)) {
-				System.out.println("***\"" + player.getLettersGuessed()	+ "\"" + " is correct!***");
+		if (machine.isLetterInWord(player, answer, letter.toLowerCase())) {
+			if (player.getGuessAsString().equals(answer)) {
+				System.out.println("***\"" + player.getGuessAsString()	+ "\"" + " is correct!***");
 				System.out.print("***You have beaten the game, " + player.getUsername() + "!***");
 				player.setTries(0);
 			}
