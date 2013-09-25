@@ -1,11 +1,22 @@
 package dictionary;
 
+import java.util.List;
 import java.util.ArrayList;
 
-public class Dictionary {
-	private ArrayList<String> Dictionary = new ArrayList<String>();
+public class Dictionary implements IDictionaryService{
+	private List<String> Dictionary;
 	
 	public Dictionary() {
+		generateDictionary();
+	}
+	
+	public List<String> getDictionary() {
+		return this.Dictionary;
+	}
+
+	public void generateDictionary() {
+		Dictionary = new ArrayList<String>();
+		
 		this.Dictionary.add("hello");
 		this.Dictionary.add("world");
 		this.Dictionary.add("test");
@@ -16,9 +27,5 @@ public class Dictionary {
 		this.Dictionary.add("hangman");
 		this.Dictionary.add("guess");
 		this.Dictionary.add("dictionary");
-	}
-
-	public ArrayList<String> getDictionary() {
-		return Dictionary;
 	}
 }

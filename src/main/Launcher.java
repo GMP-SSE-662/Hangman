@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import machine.Machine;
+
 import player.Player;
-import ai.AI;
 
 public class Launcher {
 	private static BufferedReader consoleReader;
@@ -49,24 +50,23 @@ public class Launcher {
 	}
 	
 	public static void game(Player player) throws IOException {
-		AI ai = new AI(player);
-		String answer = ai.getAnswer();
-		player.setGuess(player.initGuess(ai));
+		Machine machine = new Machine(player);
+		String answer = machine.getAnswer();
+		player.initGuess(machine);
 		
 		System.out.println("\n***Guess this " + answer.length() + " letter word!***");
 		
 		while (player.getTries() != 0) {
-			for (int x = 0; x < answer.length(); x++) {
-				System.out.print(player.getGuess()[x] + " ");
-			}
+			System.out.println(player.getLettersGuessed());
+			
 			System.out.println("\n1. Guess a letter");
 			System.out.println("2. Guess the answer");
 			System.out.println("3. Concede\n");
 			System.out.println("No. of tries remaining: " + "*" + player.getTries() + "*");
 			
 			switch(playerInputInteger(0)) {
-			case 1: guessLetter(player, ai); break;
-			case 2: guessAnswer(player, ai); break;
+			case 1: guessLetter(player, machine); break;
+			case 2: guessAnswer(player, machine); break;
 			case 3: 
 				if(playerWantsToConcede(player)) {
 					player.setTries(0);
@@ -81,14 +81,14 @@ public class Launcher {
 		}
 	}
 	
-	public static void guessLetter(Player player, AI ai) throws IOException {
+	public static void guessLetter(Player player, Machine machine) throws IOException {
 		System.out.print("Input letter: ");
 		String ltr = consoleReader.readLine();
-		String answer = ai.getAnswer();
+		String answer = machine.getAnswer();
 
-		if (ai.isLetterInWord(player, answer, ltr.toLowerCase())) {
+		if (machine.isLetterInWord(player, answer, ltr.toLowerCase())) {
 			if (String.valueOf(player.getGuess()).equals(answer)) {
-				System.out.println("***\"" + String.valueOf(player.getGuess())	+ "\"" + " is correct!***");
+				System.out.println("***\"" + player.getLettersGuessed()	+ "\"" + " is correct!***");
 				System.out.print("***You have beaten the game, " + player.getUsername() + "!***");
 				player.setTries(0);
 			}
@@ -101,12 +101,12 @@ public class Launcher {
 		}
 	}
 	
-	public static void guessAnswer(Player player, AI ai) throws IOException {
+	public static void guessAnswer(Player player, Machine machine) throws IOException {
 		System.out.print("Input guess: ");
 		String word = consoleReader.readLine();
-		String answer = ai.getAnswer();
+		String answer = machine.getAnswer();
 		
-		if (ai.isGuessCorrect(answer, word.toLowerCase())) {
+		if (machine.isGuessCorrect(answer, word.toLowerCase())) {
 			player.setGuess(word.toCharArray());
 			System.out.println("***\"" + word + "\"" + " is correct!***");
 			System.out.println("***You have beaten the game, " + player.getUsername() + "!***");
