@@ -40,6 +40,9 @@ public class Player{
 		setGuess(arrGuess);
 	}
 	
+	/**
+	 * Get char[] guess and parse to String
+	 */
 	public String getGuessAsString() {
 		return String.valueOf(this.guess);
 	}
