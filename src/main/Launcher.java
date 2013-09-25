@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import dictionary.DictionaryRepository;
+
 import machine.Machine;
 
 import player.Player;

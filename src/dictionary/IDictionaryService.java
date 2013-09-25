@@ -1,8 +1,7 @@
 package dictionary;
 
-import java.util.List;
+import java.io.IOException;
 
 public interface IDictionaryService {
-	void generateDictionary();
-
+	void generateDictionary() throws IOException;
 }
