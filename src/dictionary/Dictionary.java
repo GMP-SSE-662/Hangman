@@ -20,13 +20,8 @@ public class Dictionary implements IDictionaryService{
 		
 		this.Dictionary.add("hello");
 		this.Dictionary.add("world");
-		this.Dictionary.add("test");
-		this.Dictionary.add("programming");
-		this.Dictionary.add("software");
-		this.Dictionary.add("development");
+		this.Dictionary.add("object");
 		this.Dictionary.add("java");
-		this.Dictionary.add("hangman");
 		this.Dictionary.add("guess");
-		this.Dictionary.add("dictionary");
 	}
 }

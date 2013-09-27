@@ -1,4 +1,4 @@
-package lib.external.opencsv;
+package opencsv;
 
 import java.util.List;
 import java.io.FileReader;
@@ -10,7 +10,7 @@ import au.com.bytecode.opencsv.CSVReader;
  * opencsv test implementation
  * @author zurcnay4
  */
-public class OpenCsvImplementation {
+public class ReadImplementation {
 	/**
 	 * reads per line
 	 */

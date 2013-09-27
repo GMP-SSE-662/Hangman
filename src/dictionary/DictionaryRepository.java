@@ -11,7 +11,7 @@ public class DictionaryRepository implements IDictionaryService{
 		CSVReader reader = new CSVReader(new FileReader("dictionary.csv"), ',');
 		String [] nextLine;
 		int ctr =1;
-	    while ((nextLine = reader.readNext()) != null) { //new array for every line
+	    while ((nextLine = reader.readNext()) != null) {
 	    	System.out.println("Row " + ctr);
 	        System.out.println(nextLine[0]);
 	    	System.out.println(nextLine[1]);
