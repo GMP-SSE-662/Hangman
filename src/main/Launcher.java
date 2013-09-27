@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import dictionary.DictionaryRepository;
-
 import machine.Machine;
 
 import player.Player;
@@ -16,6 +14,7 @@ public class Launcher {
 	public static void main(String[] args) throws IOException {
 		consoleReader = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("***LET'S PLAY HANGMAN (w/o the actual \"man\")***");
+		
 		System.out.print("Enter name:");
 		String username = consoleReader.readLine();
 
