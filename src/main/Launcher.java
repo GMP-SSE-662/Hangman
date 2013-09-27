@@ -50,7 +50,25 @@ public class Launcher {
 	}
 	
 	public static void game(Player player) throws IOException {
-		Machine machine = new Machine(player);
+		int difficulty = 0;
+		do {
+			System.out.println("Difficulty:");
+			System.out.println("1. Easy");
+			System.out.println("2. Normal");
+			
+			switch (playerInputInteger(0)) {
+				case 1:
+					difficulty = 1;
+					break;
+				case 2:
+					difficulty = 2;
+					break;
+				default: System.out.println("***ERROR: Invalid input!***");
+					break;
+			}
+		} while (difficulty == 0);
+		
+		Machine machine = new Machine(player, difficulty);
 		String answer = machine.getAnswer();
 		
 		System.out.println("\n***Guess this " + answer.length() + " letter word!***");

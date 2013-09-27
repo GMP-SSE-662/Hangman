@@ -1,16 +1,20 @@
 package machine;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
 import dictionary.Dictionary;
+import dictionary.DictionaryRepository;
 import player.Player;
 
 public class Machine {
 	private String answer;
 	private String lettersGuessed;
+	private int difficulty;
 
-	public Machine(Player player) {
+	public Machine(Player player, int difficulty) throws IOException{
+		setDifficulty(difficulty);
 		this.answer = generateRandomWord();
 		setPlayerTries(player, answer);
 		player.initGuess(this);
@@ -24,12 +28,26 @@ public class Machine {
 		this.answer = answer;
 	}
 	
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
 	/**
 	 * Generate Random word from the hardcoded list
 	 */
-	private String generateRandomWord() {
-		List<String> dictionary = new Dictionary().getDictionary();
-		return dictionary.get(new Random().nextInt(dictionary.size()));
+	private String generateRandomWord() throws IOException{
+		if (getDifficulty() == 1) {
+			List<String> dictionary = new Dictionary().getDictionary();
+			return dictionary.get(new Random().nextInt(dictionary.size()));
+		} else {
+			List<String[]> dictionary = new DictionaryRepository().getDictionary();
+			return dictionary.get(new Random().nextInt(dictionary.size()))[0];
+		}
+		
 	}
 
 	/**
