@@ -6,6 +6,7 @@ public class Player{
 	private String username;
 	private char[] guess;
 	private int tries;
+	private int difficulty;
 
 	public Player(String username) {
 		this.username = username;
@@ -29,6 +30,14 @@ public class Player{
 		this.tries = tries;
 	}
 	
+	public int getDifficulty() {
+		return difficulty;
+	}
+
+	public void setDifficulty(int difficulty) {
+		this.difficulty = difficulty;
+	}
+
 	/**
 	 * Initialize Player Guess
 	 */

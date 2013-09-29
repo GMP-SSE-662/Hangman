@@ -10,45 +10,51 @@ import player.Player;
 
 public class Machine {
 	private String answer;
-	private String lettersGuessed;
-	private int difficulty;
+	private String display;
 
-	public Machine(Player player, int difficulty) throws IOException{
-		setDifficulty(difficulty);
-		this.answer = generateRandomWord();
-		setPlayerTries(player, answer);
+	public Machine(Player player) throws IOException {
+		setAnswerDifficulty(player);
+		setPlayerTries(player, this.answer);
 		player.initGuess(this);
 	}
 
 	public String getAnswer() {
 		return answer;
 	}
-
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	
-	public int getDifficulty() {
-		return difficulty;
-	}
 
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
+	/**
+	 * Set answer based on the difficulty chosen
+	 */
+	public void setAnswerDifficulty(Player player) throws IOException {
+		switch (player.getDifficulty()) {
+		case 1:
+			this.answer = generateRandomEasy();
+			break;
+		case 2:
+			this.answer = generateRandomNormal();
+			break;
+		}
 	}
 
 	/**
-	 * Generate Random word from the hardcoded list
+	 * Generates dictionary from hardcoded list
 	 */
-	private String generateRandomWord() throws IOException{
-		if (getDifficulty() == 1) {
-			List<String> dictionary = new Dictionary().getDictionary();
-			return dictionary.get(new Random().nextInt(dictionary.size()));
-		} else {
-			List<String[]> dictionary = new DictionaryRepository().getDictionary();
-			return dictionary.get(new Random().nextInt(dictionary.size()))[0];
-		}
-		
+	private String generateRandomEasy() throws IOException {
+		List<String> dictionary = new Dictionary().getDictionary();
+		return dictionary.get(new Random().nextInt(dictionary.size()));
 	}
+	
+	/**
+	 * Generates dictionary from file
+	 */
+	private String generateRandomNormal() throws IOException {
+		List<String[]> dictionary = new DictionaryRepository().getDictionary();
+		return dictionary.get(new Random().nextInt(dictionary.size()))[0];
+	}
+	
 
 	/**
 	 * Set player tries based on the length of the word
@@ -78,18 +84,37 @@ public class Machine {
 	/**
 	 * Checks if the word guessed is correct
 	 */
-	public Boolean isGuessCorrect(String answer, String guess) {
-		return guess.equals(answer);
+	public Boolean isGuessCorrect(Player player, String answer, String guess) {
+		if (guess.equals(answer)) {
+			player.setGuess(guess.toCharArray());
+			player.setTries(0);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
 	 * Displays letter guessed by the player
 	 */
 	public String displayLettersGuessed(Player player) {
-		this.lettersGuessed = "";
+		this.display = "";
 		for (int x = 0; x < answer.length(); x++) {
-			this.lettersGuessed += player.getGuess()[x] + " ";
+			this.display += player.getGuess()[x] + " ";
 		}
-		return this.lettersGuessed.trim();
+		return this.display.trim();
+	}
+	
+	/**
+	 * Subtracts a try on mistake
+	 */
+	public void removeOneTry(Player player) {
+		player.setTries(player.getTries() - 1);
+	}
+	
+	/**
+	 * Checks if game is over
+	 */
+	public boolean isGameOver(Player player, Machine machine) {
+		return player.getTries() == 0 && !machine.isGuessCorrect(player, answer, player.getGuessAsString());
 	}
 }

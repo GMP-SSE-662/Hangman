@@ -1,14 +1,19 @@
-Hangman without the "man"
-=======
+Hangman OOP
+===========
 This game was developed to check and exercise my knowledge
 in OOP using Java.
 
-Comments and suggestions regarding the ff are highly appreciated:
+Libraries:
+----------
+-OpenCV 2.3
+-jUnit 4.11
+
+Tools:
+------
+-Maven
+
+### Others
+Comments and suggestions on the following are welcome:
 - overall design and code
-- modularization
-- object abstraction
 - code optimization/simplification
-- code readability
-- list usage
-- naming convention
 - how to improve this game

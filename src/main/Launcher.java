@@ -50,25 +50,27 @@ public class Launcher {
 	}
 	
 	public static void game(Player player) throws IOException {
-		int difficulty = 0;
 		do {
 			System.out.println("Difficulty:");
 			System.out.println("1. Easy");
-			System.out.println("2. Normal");
+			System.out.println("2. Normal \n");
+			System.out.println("3. Cancel");
 			
 			switch (playerInputInteger(0)) {
 				case 1:
-					difficulty = 1;
+					player.setDifficulty(1);
 					break;
 				case 2:
-					difficulty = 2;
+					player.setDifficulty(2);
 					break;
+				case 3:
+					return;
 				default: System.out.println("***ERROR: Invalid input!***");
 					break;
 			}
-		} while (difficulty == 0);
+		} while (player.getDifficulty() == 0);
 		
-		Machine machine = new Machine(player, difficulty);
+		Machine machine = new Machine(player);
 		String answer = machine.getAnswer();
 		
 		System.out.println("\n***Guess this " + answer.length() + " letter word!***");
@@ -85,14 +87,14 @@ public class Launcher {
 			case 1: guessLetter(player, machine); break;
 			case 2: guessAnswer(player, machine); break;
 			case 3: 
-				if(playerWantsToConcede(player)) {
+				if(playerWantsToConcede()) {
 					player.setTries(0);
 				} break; 
 			default: System.out.println("***ERROR: Invalid input!***");
 			}
 		}
 
-		if (player.getTries() == 0 && !player.getGuessAsString().equals(answer)) {
+		if (machine.isGameOver(player, machine)) {
 			System.out.println("***GAME OVER, " + player.getUsername() + "!***");
 			System.out.println("***The answer is " + "\"" + answer + "\"***");
 		}
@@ -104,17 +106,13 @@ public class Launcher {
 		String answer = machine.getAnswer();
 
 		if (machine.isLetterInWord(player, answer, letter.toLowerCase())) {
-			if (player.getGuessAsString().equals(answer)) {
+			if (machine.isGuessCorrect(player, answer, player.getGuessAsString())) {
 				System.out.println("***\"" + player.getGuessAsString()	+ "\"" + " is correct!***");
 				System.out.print("***You have beaten the game, " + player.getUsername() + "!***");
-				player.setTries(0);
 			}
 			System.out.println();
 		} else {
-			player.setTries(player.getTries() - 1);
-			if (player.getTries() != 0) {
-				System.out.println("***Sorry try again!***");
-			}
+			loseTry(player, machine);
 		}
 	}
 	
@@ -123,15 +121,11 @@ public class Launcher {
 		String word = consoleReader.readLine();
 		String answer = machine.getAnswer();
 		
-		if (machine.isGuessCorrect(answer, word.toLowerCase())) {
-			player.setGuess(word.toCharArray());
+		if (machine.isGuessCorrect(player, answer, word.toLowerCase())) {
 			System.out.println("***\"" + word + "\"" + " is correct!***");
 			System.out.println("***You have beaten the game, " + player.getUsername() + "!***");
-			player.setTries(0);
-
 		} else {
-			System.out.println("***Sorry try again!***");
-			player.setTries(player.getTries() - 1);
+			loseTry(player, machine);
 		}
 	}
 		
@@ -156,7 +150,7 @@ public class Launcher {
 		System.out.println("          ***About this game***");
 	}
 	
-	public static boolean playerWantsToConcede(Player player) throws IOException {
+	public static boolean playerWantsToConcede() throws IOException {
 		System.out.println("***Are you sure you want to concede?***");
 		return answerYN();
 	}
@@ -176,5 +170,12 @@ public class Launcher {
 			}
 		} while (!yn.toLowerCase().equals("n"));
 		return false;
+	}
+	
+	public static void loseTry(Player player, Machine machine) {
+		machine.removeOneTry(player);
+		if (player.getTries() != 0) {
+			System.out.println("***Sorry try again!***");
+		}
 	}
 }
