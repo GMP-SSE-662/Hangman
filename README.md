@@ -5,12 +5,12 @@ in OOP using Java.
 
 Libraries:
 ----------
--OpenCV 2.3
--jUnit 4.11
+- OpenCV 2.3
+- jUnit 4.11
 
 Tools:
 ------
--Maven
+- Maven
 
 ### Others
 Comments and suggestions on the following are welcome:
