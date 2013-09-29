@@ -132,7 +132,7 @@ public class Launcher {
 	public static void help() {
 		System.out.println("              ***Help***");
 		System.out.println("You will be given a word to try and guess.");
-		System.out.println("Your number of trials will depend on the length of the word.");
+		System.out.println("Your number of tries will depend on the length of the word.");
 		System.out.println("You can guess it by letter or guess it directly.");
 		System.out.println("Goodluck; Have fun!");
 		System.out.println("              ***Help***");

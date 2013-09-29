@@ -1,4 +1,4 @@
-package junit;
+package junit.suite.tests;
 
 import static org.junit.Assert.*;
 
@@ -7,11 +7,12 @@ import java.io.IOException;
 import machine.Machine;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import player.Player;
 
-public class MachineTest {
+public class MachineCase {
 	private Player p1;
 	private Machine machine;
 
@@ -43,7 +44,7 @@ public class MachineTest {
 		p1.setDifficulty(1);
 		machine = new Machine(p1);
 		
-		assertEquals((int) (machine.getAnswer().length() * .8), p1.getTries());
+		assertEquals(5 + ((int) (machine.getAnswer().length() * .5)), p1.getTries());
 	}
 	
 	@Test
@@ -51,7 +52,7 @@ public class MachineTest {
 		p1.setDifficulty(2);
 		machine = new Machine(p1);
 		
-		assertEquals((int) (machine.getAnswer().length() * .8), p1.getTries());
+		assertEquals(5 + ((int) (machine.getAnswer().length() * .5)), p1.getTries());
 	}
 	
 	@Test

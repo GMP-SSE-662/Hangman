@@ -1,4 +1,4 @@
-package junit;
+package junit.suite.tests;
 
 import static org.junit.Assert.*;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import player.Player;
 
-public class PlayerTest {
+public class PlayerCase {
 	private Player p1;
 	private Machine machine;
 	

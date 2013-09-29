@@ -58,10 +58,11 @@ public class Machine {
 
 	/**
 	 * Set player tries based on the length of the word
+	 * Tries =  No of all vowels + 50% of answer length
 	 */
-	private void setPlayerTries(Player player, String word) {
-		int tries = (int) (word.length() * .8);
-		player.setTries(tries % 10);
+	private void setPlayerTries(Player player, String answer) {
+		int tries = 5 + ((int) (answer.length() * .5));
+		player.setTries(tries);
 	}
 	
 	/**

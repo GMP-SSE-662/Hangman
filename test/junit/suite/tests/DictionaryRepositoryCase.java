@@ -1,4 +1,4 @@
-package junit;
+package junit.suite.tests;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import dictionary.DictionaryRepository;
 
-public class DictionaryRepositoryTest {
+public class DictionaryRepositoryCase {
 
 	@Test
 	public void testGenerateDictionary() throws IOException {
