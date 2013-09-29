@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.067" errors="0" skipped="0" tests="12" name="junit.suite.AllMavenTest">
+<testsuite failures="0" time="0.066" errors="0" skipped="0" tests="12" name="junit.suite.AllMavenTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -27,7 +27,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="classworlds.conf" value="/Users/ayancruz/Documents/workspace/.metadata/.plugins/org.eclipse.m2e.core/launches/m2conf8393401468186284857.tmp"/>
+    <property name="classworlds.conf" value="/Users/ayancruz/Documents/workspace/.metadata/.plugins/org.eclipse.m2e.core/launches/m2conf5065604711037406202.tmp"/>
     <property name="sun.jnu.encoding" value="MacRoman"/>
     <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
@@ -69,11 +69,11 @@
   <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testSetDifficultyEasy"/>
   <testcase time="0" classname="junit.suite.tests.MachineCase" name="testIsGuessCorrect"/>
   <testcase time="0" classname="junit.suite.tests.MachineCase" name="testRemoveOneTry"/>
-  <testcase time="0" classname="junit.suite.tests.MachineCase" name="testSetPlayerTriesEasy"/>
-  <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testIsGameOver"/>
+  <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testSetPlayerTriesEasy"/>
+  <testcase time="0" classname="junit.suite.tests.MachineCase" name="testIsGameOver"/>
   <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testSetPlayerTriesNormal"/>
   <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testSetDifficultyNormal"/>
-  <testcase time="0.001" classname="junit.suite.tests.MachineCase" name="testIsLetterInWord"/>
-  <testcase time="0.001" classname="junit.suite.tests.PlayerCase" name="testInitializeEasyGuess"/>
-  <testcase time="0" classname="junit.suite.tests.PlayerCase" name="testInitializeNormalGuess"/>
+  <testcase time="0" classname="junit.suite.tests.MachineCase" name="testIsLetterInWord"/>
+  <testcase time="0" classname="junit.suite.tests.PlayerCase" name="testInitializeEasyGuess"/>
+  <testcase time="0.001" classname="junit.suite.tests.PlayerCase" name="testInitializeNormalGuess"/>
 </testsuite>
